@@ -26,7 +26,7 @@
   "devDependencies": {},
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot",
-    "start": "webpack-dev-server --content-base src"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC"
