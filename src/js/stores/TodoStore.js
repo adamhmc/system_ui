@@ -20,10 +20,8 @@ class TodoStore extends EventEmitter {
   }
 
   removeItem(itemId){
-    debugger;
     console.log(itemId);
     for(var i = 0 ; i < this.todos.length ; i++){
-      debugger;
       if(this.todos[i]._id === itemId){
         this.todos.splice(i, 1);
       }
@@ -44,7 +42,6 @@ class TodoStore extends EventEmitter {
   }
 
   isNotMatchedCriteria(item){
-    debugger;
     if(!item.companyId.includes(this.criteria.companyId)){
         return true;
       } 

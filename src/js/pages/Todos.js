@@ -1,20 +1,21 @@
 import React from "react";
-
 import Todo from "../components/Todo";
 import * as TodoActions from "../actions/TodoActions";
 import TodoStore from "../stores/TodoStore";
 
-
 export default class Featured extends React.Component {
   constructor() {
     super();
-    this.filters = {
+    this.defaultFilter = {
       "companyId" : "",
       "companyName" : "",
       "productName" : "",
       "productPrice" : "",
       "note":""
     }
+
+    this.filters = Object.assign({}, this.defaultFilter)
+
     this.getTodos = this.getTodos.bind(this);
     this.state = {
       todos: TodoStore.getAll(),
@@ -62,6 +63,17 @@ export default class Featured extends React.Component {
     }
   }
 
+  resetFilter(){
+    this.filters = Object.assign({}, this.defaultFilter);
+    this.refs.companyId.value = "";
+    this.refs.companyName.value = "";
+    this.refs.productName.value = "";
+    this.refs.productPrice.value = "";
+    this.ref.note.value = "";
+
+    TodoActions.filterTodo(this.filters);
+  }
+
   render() {
     const { todos } = this.state;
 
@@ -72,7 +84,7 @@ export default class Featured extends React.Component {
     });
 
     return (
-      <div>
+      <div class = "element">
         <table>
         <tbody>
           <tr>
@@ -81,28 +93,33 @@ export default class Featured extends React.Component {
             <th>產品名稱</th>
             <th>產品單價</th>
             <th>備註</th>
+            <th/>
           </tr>
           <tr>
-            <td><input id="companyId" onChange={this.handleInputChange.bind(this)}/></td>
-            <td><input id="companyName" onChange={this.handleInputChange.bind(this)}/></td>
-            <td><input id="productName" onChange={this.handleInputChange.bind(this)}/></td>
-            <td><input id="productPrice" onChange={this.handleInputChange.bind(this)}/></td>
-            <td><input id="note" onChange={this.handleInputChange.bind(this)}/></td>
+            <td><input id="companyId" ref="companyId" onChange={this.handleInputChange.bind(this)}/></td>
+            <td><input id="companyName" ref="companyName" onChange={this.handleInputChange.bind(this)}/></td>
+            <td><input id="productName" ref="productName" onChange={this.handleInputChange.bind(this)}/></td>
+            <td><input id="productPrice" ref="productPrice" onChange={this.handleInputChange.bind(this)}/></td>
+            <td><input id="note" ref="note" onChange={this.handleInputChange.bind(this)}/></td>
             <td><button onClick={this.addItem.bind(this)}>新增</button></td>
+          </tr>
+          <tr>
             <td>自動搜尋 <input id="autoSearch" type="checkbox" defaultChecked={this.state.autoSearch} onChange={this.setAutoSearch.bind(this)}/></td>
+            <td><button onClick={this.resetFilter.bind(this)}>清除欄位</button></td>
           </tr>
           </tbody>
         </table>
         <br/>
-          <table border="1" width="100%">
+          <table>
             <tbody>
               <tr>
-            <td>廠商編號</td>
-            <td>廠商名稱</td>
-            <td>產品名稱</td>
-            <td>產品單價</td>
-            <td>備註</td>
-            <td>最後更新日期</td>
+            <th>廠商編號</th>
+            <th>廠商名稱</th>
+            <th>產品名稱</th>
+            <th>產品單價</th>
+            <th>備註</th>
+            <th>最後更新日期</th>
+            <th/>
           </tr>
             {TodoComponents}
             </tbody>

@@ -1,6 +1,7 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+var jsonLoader = require('json-loader');
 
 module.exports = {
   context: path.join(__dirname, "src"),
@@ -16,6 +17,15 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
         }
+      },
+      {
+    	include: /\.json$/,
+    	loaders: ['json-loader']
+      },
+      {
+        test: /\.css/,
+        loaders: ['style', 'css'],
+        include: __dirname + '/src'
       }
     ]
   },

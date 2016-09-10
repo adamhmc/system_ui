@@ -6,16 +6,10 @@ import Favorites from "./pages/Favorites";
 import Todos from "./pages/Todos";
 import Layout from "./pages/Layout";
 import Settings from "./pages/Settings";
-
+import styles from "../style/app.css"
 
 const app = document.getElementById('app');
 
 ReactDOM.render(
-  <Router history={hashHistory}>
-    <Route path="/" component={Layout}>
-      <IndexRoute component={Todos}></IndexRoute>
-      <Route path="favorites" component={Favorites}></Route>
-      <Route path="settings" component={Settings}></Route>
-    </Route>
-  </Router>,
+	<Todos/>, 
 app);
