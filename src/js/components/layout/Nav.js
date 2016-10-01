@@ -28,10 +28,10 @@ export default class Nav extends React.Component {
 
   render() {
     return (
-<Grid>
+<Grid fluid>
     <Row className="show-grid">
-      <Col lg={10}/>
-      <Col className="navItems" lg={2}>
+      <Col lg={10} md={10} sm={10}/>
+      <Col className="navItems" lg={2} md={2} sm={2}>
         <IndexLink to="/"><i class="glyphicon glyphicon-search"/></IndexLink>
         <Link to="checkout"><i class="glyphicon glyphicon-list-alt"/><label class="itemInCart">{this.state.itemInCart}</label></Link>
       </Col>

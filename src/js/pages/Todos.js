@@ -118,7 +118,7 @@ export default class Featured extends React.Component {
             <th>備註</th>
             <th/>
           </tr>
-          <tr>
+          <tr className="filter">
             <td><input id="companyId" ref="companyId" onChange={this.handleInputChange.bind(this)}/></td>
             <td><input id="companyName" ref="companyName" onChange={this.handleInputChange.bind(this)}/></td>
             <td><input id="productName" ref="productName" onChange={this.handleInputChange.bind(this)}/></td>

@@ -1,7 +1,7 @@
 table {
-	width: 100%;
-	margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  margin-left:auto; 
+  margin-right:auto;
 }
 
 th {
@@ -19,13 +19,12 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 tr:hover{background-color:#FDFF9B}
 
-.container{
-	margin-left: 10%;
-	margin-right: 10%;
+.filter input {
+  width: 100%;
 }
 
 .pageHeader h1{
-	margin-left: 12%;
+	margin-left: 5%;
 }
 
 .navItems{
@@ -54,6 +53,10 @@ hr {
 .enlargeAnimation{
 	display: inline;
 	transition : 3s;
+}
+
+button{
+  margin-left: 5px;
 }
 
 .enlargeAnimation:active{
@@ -110,12 +113,10 @@ hr {
 }
 
 .glyphicon-search{
-	font-size: 40px;
-	vertical-align: middle;
+  font-size: 40px;
 }
 .glyphicon-list-alt {
-    font-size: 40px;
-	vertical-align: middle;
+  font-size: 40px;
 }
 
 .logout {
@@ -262,7 +263,7 @@ hr {
 	text-align: center;
 	position: absolute;
 	top: -5px;
-	right: 90px;
+  margin-left: -10px;
 }
 
 .quantity {

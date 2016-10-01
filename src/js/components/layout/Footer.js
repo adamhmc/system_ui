@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
     };
 
     return (
-      <footer style={footerStyles}>
+      <footer style={footerStyles} class="container">
         <div class="row">
           <div class="col-lg-12">
             <p>Copyright &copy; 誠書股份有限公司</p>
