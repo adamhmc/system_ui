@@ -27,7 +27,6 @@ export function deleteTodo(itemId) {
 }
 
 export function filterTodo(criteria){
-  debugger;
     dispatcher.dispatch({
       type: "FILTER_TODO",
       criteria,

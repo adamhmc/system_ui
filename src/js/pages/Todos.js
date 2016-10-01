@@ -2,6 +2,9 @@ import React from "react";
 import Todo from "../components/Todo";
 import * as TodoActions from "../actions/TodoActions";
 import TodoStore from "../stores/TodoStore";
+import CheckoutStore from "../stores/CheckoutStore";
+import Loading from "react-loading";
+import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 export default class Featured extends React.Component {
   constructor() {
@@ -21,6 +24,7 @@ export default class Featured extends React.Component {
       todos: TodoStore.getAll(),
       autoSearch: false,
     };
+
     TodoActions.reloadTodos();
   }
 
@@ -74,14 +78,33 @@ export default class Featured extends React.Component {
     TodoActions.filterTodo(this.filters);
   }
 
-  render() {
-    const { todos } = this.state;
-
-    const TodoComponents = todos.map((todo) => {
+  renderContent(todos){
+      const TodoComponents = todos.map((todo) => {
         if(!todo.hide){
           return <Todo key={todo._id} {...todo}/>;
         }
-    });
+      });
+
+      return(
+        <table>
+            <tbody>
+              <tr>
+            <th>廠商編號</th>
+            <th>廠商名稱</th>
+            <th>產品名稱</th>
+            <th>產品單價</th>
+            <th>備註</th>
+            <th>最後更新日期</th>
+            <th/>
+          </tr>
+            {TodoComponents}
+            </tbody>
+          </table>
+      );
+  }
+
+  render() {
+    const { todos } = this.state;
 
     return (
       <div class = "element">
@@ -110,20 +133,7 @@ export default class Featured extends React.Component {
           </tbody>
         </table>
         <br/>
-          <table>
-            <tbody>
-              <tr>
-            <th>廠商編號</th>
-            <th>廠商名稱</th>
-            <th>產品名稱</th>
-            <th>產品單價</th>
-            <th>備註</th>
-            <th>最後更新日期</th>
-            <th/>
-          </tr>
-            {TodoComponents}
-            </tbody>
-          </table>
+        {this.renderContent(todos)}
       </div>
     );
   }

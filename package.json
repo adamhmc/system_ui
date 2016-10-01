@@ -20,8 +20,10 @@
     "moment-timezone": "^0.5.5",
     "react": "^0.14.6",
     "react-bootstrap": "^0.30.3",
+    "react-day-picker": "^2.4.1",
     "react-dom": "^0.14.6",
     "react-icons": "^2.2.1",
+    "react-loading": "0.0.9",
     "react-router": "^1.0.3",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"

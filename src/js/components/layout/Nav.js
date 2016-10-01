@@ -1,53 +1,42 @@
 import React from "react";
+import { Grid, Row, Col} from 'react-bootstrap';
 import { IndexLink, Link } from "react-router";
+import CheckoutStore from '../../stores/CheckoutStore'
 
 export default class Nav extends React.Component {
-  constructor() {
-    super()
+  constructor(){
+    super();
     this.state = {
-      collapsed: true,
-    };
+      itemInCart : 0
+    }
   }
 
-  toggleCollapse() {
-    const collapsed = !this.state.collapsed;
-    this.setState({collapsed});
+  updateCount(){
+    this.setState({
+      itemInCart : CheckoutStore.getCount()
+    })
+  }
+
+
+  componentWillMount() {
+    CheckoutStore.on("change", this.updateCount.bind(this));
+  }
+
+  componentWillUnmount() {
+    CheckoutStore.removeListener("change", this.updateCount.bind(this));
   }
 
   render() {
-    const { location } = this.props;
-    const { collapsed } = this.state;
-    const featuredClass = location.pathname === "/" ? "active" : "";
-    const archivesClass = location.pathname.match(/^\/favorites/) ? "active" : "";
-    const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
-    const navClass = collapsed ? "collapse" : "";
-
     return (
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" onClick={this.toggleCollapse.bind(this)} >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class={featuredClass}>
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Todos</IndexLink>
-              </li>
-              <li class={archivesClass}>
-                <Link to="favorites" onClick={this.toggleCollapse.bind(this)}>Favorites</Link>
-              </li>
-              <li class={settingsClass}>
-                <Link to="settings" onClick={this.toggleCollapse.bind(this)}>Settings</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+<Grid>
+    <Row className="show-grid">
+      <Col lg={10}/>
+      <Col className="navItems" lg={2}>
+        <IndexLink to="/"><i class="glyphicon glyphicon-search"/></IndexLink>
+        <Link to="checkout"><i class="glyphicon glyphicon-list-alt"/><label class="itemInCart">{this.state.itemInCart}</label></Link>
+      </Col>
+    </Row>
+</Grid>
     );
   }
 }

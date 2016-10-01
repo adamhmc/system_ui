@@ -1,8 +1,6 @@
 import { EventEmitter } from "events";
 import dispatcher from "../dispatcher";
 
-var ItemEntity = require('../model/ItemEntity');
-
 class TodoStore extends EventEmitter {
   constructor() {
     super()
@@ -12,7 +10,6 @@ class TodoStore extends EventEmitter {
 
   createTodo(context) {
     this.todos.push(context);
-    this.emit("change");
   }
 
   getAll() {
@@ -67,6 +64,11 @@ class TodoStore extends EventEmitter {
     switch(action.type) {
       case "CREATE_TODO": {
         this.createTodo(action.data);
+        this.emit("change");
+        break;
+      }
+      case "FETCH_TODOS":{
+        this.emit("change");
         break;
       }
       case "DELETE_TODO" : {
@@ -87,6 +89,7 @@ class TodoStore extends EventEmitter {
       case "UPDATE_TODOS" : {
         this.updateItems(action.updateItem);
         this.emit("change");
+        break;
       }
     }
   }
