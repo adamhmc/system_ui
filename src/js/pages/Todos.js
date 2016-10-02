@@ -4,6 +4,7 @@ import * as TodoActions from "../actions/TodoActions";
 import TodoStore from "../stores/TodoStore";
 import CheckoutStore from "../stores/CheckoutStore";
 import Loading from "react-loading";
+import {Modal, Button} from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 export default class Featured extends React.Component {
@@ -23,9 +24,15 @@ export default class Featured extends React.Component {
     this.state = {
       todos: TodoStore.getAll(),
       autoSearch: false,
+      showModal: false
     };
 
     TodoActions.reloadTodos();
+  }
+
+
+  showConfirmationModal(){
+    this.setState({showModal: true});
   }
 
   componentWillMount() {

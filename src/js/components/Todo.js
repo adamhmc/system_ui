@@ -1,7 +1,7 @@
 import React from "react";
 import * as TodoActions from "../actions/TodoActions";
 import * as CheckoutActions from "../actions/CheckoutActions";
-
+import {Modal, Button} from 'react-bootstrap';
 import moment from 'moment-timezone';
 
 export default class Todo extends React.Component {
@@ -11,13 +11,15 @@ export default class Todo extends React.Component {
     super();
     this.state = {
       editing : false,
+      showModal: false
     }
     this.latestValue = Object.assign({}, props);
     moment.locale('zh-tw');
   }
 
-  deleteItem(){
+  confirmDeletion(){
     TodoActions.deleteTodo(this.props._id);
+    this.setState({showModal : false});
   }
 
   editItem(){
@@ -57,8 +59,26 @@ export default class Todo extends React.Component {
     }
     return (
       <div>
+        <Modal show={this.state.showModal}
+          onHide={close}
+          container={this}
+          aria-labelledby="contained-modal-title"
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title">確定刪除資料</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <span>廠商名稱: {this.props.companyName} 產品名稱: {this.props.productName}</span>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button bsStyle="primary" onClick={this.confirmDeletion.bind(this)}>確定</Button>
+            <Button onClick={()=>{this.setState({showModal : false})}}>取消</Button>
+          </Modal.Footer>
+        </Modal>
+
+
         <button class="enlargeAnimation" onClick={this.addCheckoutItemToCart.bind(this)}><i class="glyphicon glyphicon-plus" title="刪除"/></button>
-      <button onClick={this.deleteItem.bind(this)}><i class="glyphicon glyphicon-trash" title="刪除"/></button>
+        <button onClick={()=>{this.setState({showModal : true})}}><i class="glyphicon glyphicon-trash" title="刪除"/></button>
       </div>
       );
   }
