@@ -1,7 +1,7 @@
 import dispatcher from "../dispatcher";
 import axios from "axios";
 
-var baseUrl = "https://powerful-tor-50831.herokuapp.com/"
+var baseUrl = "https://serene-springs-13356.herokuapp.com/"
 
 export function createTodo(data) {
   axios.post(baseUrl+'items/', {
