@@ -11,6 +11,7 @@ export default class CheckoutItem extends React.Component {
   	}
 
   	updateQuantity(e){
+      debugger;
   		if(!isNaN(e.target.value)){
   			this.setState({
   				inputError : false
@@ -32,6 +33,7 @@ export default class CheckoutItem extends React.Component {
 
   	render(){
   		const item = this.props.item;
+        debugger;
 
 
   		return(
@@ -43,12 +45,8 @@ export default class CheckoutItem extends React.Component {
 
 
   				  <div class="col-lg-2">
-    					<FormGroup controlId="formValidationSuccess1" validationState= {(this.state.inputError)?"error":"success"}>
-    			      	<FormControl type="text" defaultValue={item.quantity} onChange={this.updateQuantity.bind(this)}/>
-    				</FormGroup>
-
-
-  				  	</div>
+              <input value={item.quantity} onChange={this.updateQuantity.bind(this)}/>
+  				  </div>
   				 <div class="col-lg-1"><a href="javascript:void" onClick={this.deleteItem.bind(this)}><i class="glyphicon glyphicon-remove" /></a></div>
 			</div>
   		);

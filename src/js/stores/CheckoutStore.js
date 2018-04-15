@@ -12,6 +12,7 @@ class CheckoutStore extends EventEmitter {
   	}
 
     getCount(){
+      debugger;
       var count = 0;
       for(var key in this.cart){
         count += parseInt(this.cart[key].quantity);
@@ -35,12 +36,17 @@ class CheckoutStore extends EventEmitter {
   	}
 
     deleteCartItem(productName){
+      debugger;
       delete this.cart[productName]; 
     }
 
   	updateCartItemQuantity(productName, quantity){
       this.cart[productName].quantity = quantity;
   	}
+
+    clearCart() {
+      this.cart = {};
+    }
 
   	handleActions(action) {
     switch(action.type) {
@@ -58,6 +64,12 @@ class CheckoutStore extends EventEmitter {
       case "DELETE_ITEM":{
         this.deleteCartItem(action.productName);
         this.emit("change");
+        break;
+      }
+      case "CLEAR_CART":{
+        debugger;
+        this.clearCart();
+        this.emit("clear");
         break;
       }
     }

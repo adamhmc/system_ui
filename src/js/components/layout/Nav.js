@@ -20,10 +20,12 @@ export default class Nav extends React.Component {
 
   componentWillMount() {
     CheckoutStore.on("change", this.updateCount.bind(this));
+    CheckoutStore.on("clear", this.updateCount.bind(this));
   }
 
   componentWillUnmount() {
     CheckoutStore.removeListener("change", this.updateCount.bind(this));
+    CheckoutStore.removeListener("clear", this.updateCount.bind(this));
   }
 
   render() {
