@@ -34,8 +34,9 @@ export default class Nav extends React.Component {
     <Row className="show-grid">
       <Col lg={10} md={10} sm={10}/>
       <Col className="navItems" lg={2} md={2} sm={2}>
-        <IndexLink to="/"><i class="glyphicon glyphicon-search"/></IndexLink>
-        <Link to="checkout"><i class="glyphicon glyphicon-list-alt"/><label class="itemInCart">{this.state.itemInCart}</label></Link>
+        <IndexLink to="/"><i class="glyphicon glyphicon-nav glyphicon-search" title="搜尋"/></IndexLink>
+        <Link to="checkout"><i class="glyphicon glyphicon-nav glyphicon-floppy-save" title="新增結算"/><label class="itemInCart">{this.state.itemInCart}</label></Link>
+        <Link to="transactions"><i class="glyphicon glyphicon-nav glyphicon-list-alt" title="結算紀錄"/></Link>
       </Col>
     </Row>
 </Grid>

@@ -1,3 +1,5 @@
+@import '../../node_modules/react-table/react-table.css';
+
 table {
   width: 100%;
   margin-left:auto; 
@@ -112,11 +114,13 @@ button{
 	max-width: 200px;
 }
 
-.glyphicon-search{
+.glyphicon-nav {
   font-size: 40px;
+  margin-left: 12px;
 }
-.glyphicon-list-alt {
-  font-size: 40px;
+
+.text-align-right {
+  text-align:right
 }
 
 .logout {
@@ -127,6 +131,9 @@ button{
 	text-align: right;
 }
 
+.dateInput {
+  width: 150px;
+}
 .DayPicker {
   display: flex;
   flex-wrap: wrap;

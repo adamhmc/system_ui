@@ -11,7 +11,6 @@ export default class CheckoutItem extends React.Component {
   	}
 
   	updateQuantity(e){
-      debugger;
   		if(!isNaN(e.target.value)){
   			this.setState({
   				inputError : false
@@ -33,9 +32,6 @@ export default class CheckoutItem extends React.Component {
 
   	render(){
   		const item = this.props.item;
-        debugger;
-
-
   		return(
   			<div class="row checkoutItem">
   				<div class="col-lg-3"><h4>{item.companyName}</h4></div>
