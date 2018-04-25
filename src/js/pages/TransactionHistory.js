@@ -124,16 +124,16 @@ export default class TransactionHistory extends React.Component {
   }
 
   search() {
-  	debugger;
+  	const {companyName, startDate, endDate} = this.state;
   	var params = {};
-  	if(this.state.startDate) {
-  		params.startDate = this.state.startDate;
+  	if(startDate) {
+  		params.startDate = moment(startDate).format('MM/DD/YYYY');
   	}
-  	if(this.state.endDate) {
-  		params.endDate = this.state.endDate;
+  	if(endDate) {
+  		params.endDate = moment(endDate).format('MM/DD/YYYY');
   	}
-  	if(this.state.companyName) {
-  		params.companyName = this.state.companyName;
+  	if(companyName) {
+  		params.companyName = companyName;
   	}
   	CheckoutAction.getTransactionHistory(params);
   }

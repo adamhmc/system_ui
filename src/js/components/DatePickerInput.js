@@ -14,13 +14,11 @@ export default class DatePickerInput extends React.Component {
     if (disabled) {
       return;
     }
-    if (selected) {
-      this.setState({ selectedDay: null});
-    } else {
-      this.setState({ selectedDay: day, open: false });
-    }
+    
+    this.setState({ selectedDay: e, open: false });
+    
     if(this.props.handleDaySelected) {
-    	this.props.handleDaySelected(day);
+    	this.props.handleDaySelected(e);
     }
   }
 
@@ -37,7 +35,6 @@ export default class DatePickerInput extends React.Component {
 			return(
 			  	<div class="datePicker">
   					<DayPicker initialMonth={ new Date() }
-        				selectedDays={ day => DateUtils.isSameDay(this.state.selectedDay, day) }
         				onDayClick={ this.handleDayClick.bind(this) }/>
         		</div>)
 		}
