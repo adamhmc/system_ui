@@ -20,15 +20,8 @@ export default class Summary extends React.Component {
     this.mounted = false;
 	}
 
-	handleDayClick(e, day, { selected, disabled }) {
-    if (disabled) {
-      return;
-    }
-    if (selected) {
-      this.setState({ selectedDay: null});
-    } else {
-      this.setState({ selectedDay: day, open: false });
-    }
+	handleDayClick(day) {
+      this.setState({ selectedDay: day});
   }
 
   getCalendarDate(){
@@ -89,6 +82,7 @@ export default class Summary extends React.Component {
   }
 
   saveTransaction() {
+    debugger;
     var postBody = {};
     postBody.invoiceId = this.state.invoiceId;
     postBody.shippingId = this.state.shippingId;

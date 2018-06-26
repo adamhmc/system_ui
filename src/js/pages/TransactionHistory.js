@@ -96,7 +96,7 @@ export default class TransactionHistory extends React.Component {
 
   getHtmlContent() {
   	const {transactionData, totalAmount, tax} = this.state;
-  	var totalAmountAfterTax = totalAmount * (1 + tax/100);
+  	var totalAmountAfterTax = Math.round(totalAmount * (1 + tax/100));
   	var htmlContent = "";
   	var that = this;
   	htmlContent+= "<head><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'></head>";

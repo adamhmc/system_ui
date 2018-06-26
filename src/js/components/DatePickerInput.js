@@ -15,10 +15,10 @@ export default class DatePickerInput extends React.Component {
       return;
     }
     
-    this.setState({ selectedDay: e, open: false });
+    this.setState({ selectedDay: day, open: false });
     
     if(this.props.handleDaySelected) {
-    	this.props.handleDaySelected(e);
+    	this.props.handleDaySelected(day);
     }
   }
 
